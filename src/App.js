@@ -12,9 +12,9 @@ class App extends React.Component {
       attr2: 0,
       attr3: 0,
       image: '',
-      rarity: 'normal',
+      rarity: '',
       trunfo: false,
-      // isSavedButtonDisabled: true,
+      // isSavedButtonDisabled: false,
     };
   }
 
@@ -36,7 +36,20 @@ class App extends React.Component {
       image,
       rarity,
       trunfo,
+      // isSavedButtonDisabled,
     } = this.state;
+
+    const status1 = parseInt(attr1, 10);
+    const status2 = parseInt(attr2, 10);
+    const status3 = parseInt(attr3, 10);
+    const sumAttrValidation = status1 + status2 + status3 <= '210';
+    const limitAttrValidation = (
+      (status1 >= '0' && status1 <= '90')
+      && (status2 >= '0' && status2 <= '90')
+      && (status3 >= '0' && status3 <= '90'));
+    const inputsValidation = !!((name && description && image && rarity));
+    const validation = (sumAttrValidation && limitAttrValidation && inputsValidation);
+
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -50,6 +63,7 @@ class App extends React.Component {
           cardImage={ image }
           cardRare={ rarity }
           cardTrunfo={ trunfo }
+          isSaveButtonDisabled={ !validation }
         />
         <Card
           onInputChange={ this.onInputChange }
