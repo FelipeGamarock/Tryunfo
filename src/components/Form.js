@@ -112,7 +112,7 @@ class Form extends React.Component {
             data-testid="trunfo-input"
             name="trunfo"
             id="trunfo"
-            value={ cardTrunfo }
+            checked={ cardTrunfo }
             onChange={ onInputChange }
           />
           Super Trybe Trunfo
@@ -122,7 +122,7 @@ class Form extends React.Component {
           data-testid="save-button"
           type="submit"
           id="submit-button"
-          value={ isSaveButtonDisabled }
+          disabled={ isSaveButtonDisabled }
           onClick={ onSaveButtonClick }
         >
           Salvar
