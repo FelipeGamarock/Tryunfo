@@ -22,8 +22,6 @@ class App extends React.Component {
   onSaveButtonClick = () => {
     this.setState((prevState) => ({
       cards: [...prevState.cards, prevState],
-    }));
-    this.setState({
       name: '',
       description: '',
       attr1: 0,
@@ -31,7 +29,7 @@ class App extends React.Component {
       attr3: 0,
       image: '',
       rarity: 'normal',
-    });
+    }));
   }
 
   onInputChange = ({ target }) => {
