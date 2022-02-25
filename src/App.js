@@ -14,8 +14,24 @@ class App extends React.Component {
       image: '',
       rarity: '',
       trunfo: false,
+      cards: [],
       // isSavedButtonDisabled: false,
     };
+  }
+
+  onSaveButtonClick = () => {
+    this.setState((prevState) => ({
+      cards: [...prevState.cards, prevState],
+    }));
+    this.setState({
+      name: '',
+      description: '',
+      attr1: 0,
+      attr2: 0,
+      attr3: 0,
+      image: '',
+      rarity: 'normal',
+    });
   }
 
   onInputChange = ({ target }) => {
@@ -36,6 +52,7 @@ class App extends React.Component {
       image,
       rarity,
       trunfo,
+      cards,
       // isSavedButtonDisabled,
     } = this.state;
 
@@ -64,6 +81,7 @@ class App extends React.Component {
           cardRare={ rarity }
           cardTrunfo={ trunfo }
           isSaveButtonDisabled={ !validation }
+          onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card
           onInputChange={ this.onInputChange }
@@ -75,7 +93,20 @@ class App extends React.Component {
           cardImage={ image }
           cardRare={ rarity }
           cardTrunfo={ trunfo }
+          onSaveButtonClick={ this.onSaveButtonClick }
         />
+        <div>
+          { cards.map((card) => (<Card
+            key={ card.name }
+            cardName={ card.name }
+            cardDescription={ card.description }
+            cardAttr1={ card.attr1 }
+            cardAttr2={ card.attr2 }
+            cardAttr3={ card.attr3 }
+            cardImage={ card.image }
+            cardRare={ card.rarity }
+          />))}
+        </div>
       </div>
     );
   }
